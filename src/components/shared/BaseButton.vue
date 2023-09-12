@@ -15,6 +15,10 @@ export default {
       default: "primary",
       validator: value => ["primary", "secondary", "tertiary"].includes(value)
     },
+    size: {
+      default: "medium",
+      validator: value => ["small", "medium", "large"].includes(value)
+    },
     to: { type: String, default: null },
     class: { type: String, default: null },
     fullWidth: { type: Boolean, default: false }
@@ -26,7 +30,8 @@ export default {
         "reti-button": true,
         [this.class]: !!this.class,
         "reti-button_full-width": this.fullWidth,
-        [`reti-button_${this.type}`]: !!this.type
+        [`reti-button_${this.type}`]: !!this.type,
+        [`reti-button_size-${this.size}`]: !!this.size
       };
     }
   }
@@ -63,5 +68,7 @@ export default {
 
     color: #1F64FF;
   }
+
+  &_size-large { height: 52px; }
 }
 </style>
