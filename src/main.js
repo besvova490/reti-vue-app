@@ -1,7 +1,21 @@
-import { createApp } from 'vue'
-import App from './App.vue'
-import './registerServiceWorker'
-import router from './router'
-import store from './store'
+import { createApp } from "vue";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-createApp(App).use(store).use(router).mount('#app')
+// components
+import App from "./App.vue";
+
+// helpers
+import router from "./router";
+import store from "./store";
+import "./registerServiceWorker";
+
+// styles
+import "./assets/styles/index.scss";
+
+const app = createApp(App);
+
+app.component("font-awesome-icon", FontAwesomeIcon);
+app.use(store);
+app.use(router);
+
+router.isReady().then(() => app.mount("#app"));
