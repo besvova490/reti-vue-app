@@ -10,14 +10,12 @@
 </template>
 
 <script>
-import BaseButton from "../shared/BaseButton.vue";
 import IconBaseLogo from "../icons/IconBaseLogo.vue";
 import TheNavigation from "./TheNavigation.vue";
 
 export default {
   name: "TheHeader",
   components: {
-    BaseButton,
     IconBaseLogo,
     TheNavigation
   }

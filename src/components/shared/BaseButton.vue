@@ -63,12 +63,19 @@ export default {
   &_full-width { width: 100%; }
 
   &_secondary {
-    background-color: transparent;
+    background-color: #FFF;
     border-color: #1F64FF;
 
     color: #1F64FF;
   }
 
   &_size-large { height: 52px; }
+  &_size-small {
+    border-radius: 5px;
+
+    height: 40px;
+    font-size: 16px;
+    line-height: 18px;
+  }
 }
 </style>

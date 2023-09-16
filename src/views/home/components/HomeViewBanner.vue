@@ -15,13 +15,8 @@
   </section>
 </template>
 
-<script setup>
-import BaseButton from "../../../components/shared/BaseButton.vue";
-</script>
-
 <style lang="scss" scoped>
 .reti-home-vue-banner {
-  height: 100vh;
   width: 100%;
 
   display: flex;

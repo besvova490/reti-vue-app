@@ -1,16 +1,41 @@
 <template>
-  <div class="reti-home-page">
-    <home-view-banner/>
-  </div>
+  <base-layout>
+    <div class="reti-home-page">
+      <home-view-banner/>
+      <how-it-works/>
+      <why-its-important/>
+      <rate-plan/>
+      <try-for-free/>
+      <about-us/>
+      <contact-us/>
+    </div>
+  </base-layout>
 </template>
 
 <script>
+// layouts
+import BaseLayout from "@/layouts/BaseLayout.vue";
+
+// components
 import HomeViewBanner from "./components/HomeViewBanner.vue";
+import HowItWorks from "./components/how-it-works/HowItWorks.vue";
+import WhyItsImportant from "./components/why-its-important/WhyItsImportant.vue";
+import RatePlan from "./components/rate-plans/RatePlan.vue";
+import TryForFree from "./components/TryForFree.vue";
+import AboutUs from "./components/AboutUs.vue";
+import ContactUs from "./components/ContactUs.vue";
 
 export default {
   name: "HomeView",
   components: {
-    HomeViewBanner
+    HomeViewBanner,
+    HowItWorks,
+    WhyItsImportant,
+    RatePlan,
+    TryForFree,
+    AboutUs,
+    ContactUs,
+    BaseLayout
   }
 };
 </script>
@@ -36,9 +61,10 @@ export default {
     align-items: center;
     justify-content: center;
 
-    &:after {
+    &::after {
+      content: " ";
       width: 50px;
-      height: 2px;
+      height: 4px;
       border-radius: 2px;
       background-color: #1F64FF;
 
