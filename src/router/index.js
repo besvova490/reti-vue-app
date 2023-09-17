@@ -22,6 +22,23 @@ const routes = [
         component: () => import("../views/auth/SignUpView.vue")
       }
     ]
+  },
+  {
+    path: "/dashboard/:nestedPath(.*)?",
+    name: "dashboard",
+    component: () => import("../layouts/DashboardLayout.vue"),
+    children: [
+      {
+        path: "/",
+        name: "dashboard-home",
+        component: () => import("../views/DashboardView.vue")
+      }
+    ]
+  },
+  {
+    path: "/:notFound(.*)",
+    name: "notFound",
+    component: () => import("../views/tech-pages/NotFoundView.vue")
   }
 ];
 
