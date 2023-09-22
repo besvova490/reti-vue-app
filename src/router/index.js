@@ -29,9 +29,9 @@ const routes = [
     component: () => import("../layouts/DashboardLayout.vue"),
     children: [
       {
-        path: "/",
+        path: "",
         name: "dashboard-home",
-        component: () => import("../views/DashboardView.vue")
+        component: () => import("../views/dashboard/DashboardView.vue")
       }
     ]
   },

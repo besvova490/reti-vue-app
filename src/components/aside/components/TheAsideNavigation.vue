@@ -55,7 +55,7 @@ export default {
     justify-content: flex-start;
     gap: 25px;
 
-    padding: 15px 50px;
+    padding: 10px 32px;
     border-radius: 10px;
 
     background-color: transparent;
@@ -72,7 +72,7 @@ export default {
     &:before {
       content: " ";
       position: absolute;
-      left: -42px;
+      left: -35px;
 
       width: 4px;
       height: 100%;

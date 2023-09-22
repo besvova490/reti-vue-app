@@ -24,7 +24,7 @@ export default {
 
 <style lang="scss" scoped>
 .reti-the-aside {
-  width: 320px;
+  width: 270px;
   min-height: 100vh;
   padding: 24px;
 

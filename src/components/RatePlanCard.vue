@@ -6,9 +6,10 @@
     <p class="reti-rate-plan-card__price">
       {{ price }}
     </p>
-    <base-switch
+    <base-rate-plan-switch
       v-if="planTypes && !!planTypes.length"
       :items="planTypes"
+      v-model="activePlanType"
     />
     <ul class="reti-rate-plan-card__items">
       <li :key="index" v-for="(item, index) in items" class="reti-rate-plan-card__items__item">
@@ -23,11 +24,11 @@
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
 // components
-import BaseSwitch from "./shared/BaseSwitch.vue";
+import BaseRatePlanSwitch from "./shared/BaseRatePlanSwitch.vue";
 
 export default {
   name: "RatePlanCard",
-  components: { BaseSwitch },
+  components: { BaseRatePlanSwitch },
   props: {
     type: String,
     title: String,
@@ -40,6 +41,9 @@ export default {
     className () {
       return { "reti-rate-plan-card_type-primary": this.type === "primary" };
     }
+  },
+  data () {
+    return { activePlanType: this.planTypes ? this.planTypes[0].value : null };
   }
 };
 

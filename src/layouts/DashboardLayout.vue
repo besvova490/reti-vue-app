@@ -25,9 +25,9 @@ import TheAside from "@/components/aside/TheAside.vue";
   &__content {
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    gap: 32px;
 
-    padding: 72px 81px;
+    padding: 48px;
   }
 
   &__content-main {
