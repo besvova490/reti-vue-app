@@ -1,5 +1,5 @@
 <template>
-  <div class="reti-error-label">
+  <div :class="`reti-error-label ${className}`">
     <span v-if="label" class="reti-error-label__label">{{ label }}</span>
     <slot></slot>
     <span v-if="error" class="reti-error-label__error">
@@ -16,7 +16,11 @@ export default {
   name: "BaseErrorLabel",
   props: {
     label: String,
-    error: String
+    error: String,
+    className: {
+      type: String,
+      default: ""
+    }
   },
   computed: {
     faCircleExclamation: () => faCircleExclamation

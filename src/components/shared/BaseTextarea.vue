@@ -1,9 +1,9 @@
 <template>
-  <base-error-label :label="label" :error="error">
+  <base-error-label :label="label" :error="error" :className="wrapperClass">
     <textarea
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
-      :class="className"
+      :class="classNames"
       :placeholder="placeholder"
       :type="htmlType"
       :name="name"
@@ -24,7 +24,8 @@ export default {
     label: String,
     error: String,
     placeholder: String,
-    class: String,
+    className: String,
+    wrapperClass: String,
     name: String,
     size: {
       default: "medium",
@@ -41,10 +42,10 @@ export default {
   },
   emits: ["update:modelValue"],
   computed: {
-    className () {
+    classNames () {
       return {
         "reti-input reti-input-textarea": true,
-        [this.class]: !!this.class,
+        [this.className]: !!this.className,
         [`reti-input_${this.type}`]: !!this.type,
         [`reti-input_size-${this.size}`]: !!this.size
       };

@@ -7,8 +7,7 @@
         class="reti-the-aside-navigation__inner-item"
       >
         <router-link
-          :to="{ name: 'dashboard', params: { nestedPath: item.value } }"
-          name=""
+          :to="{ name: item.value }"
           class="reti-the-aside-navigation__inner-item-link"
           active-class="reti-the-aside-navigation__inner-item-link_active"
         >
@@ -24,11 +23,11 @@
 import { faGauge, faChartSimple, faTableColumns, faUsers, faGear } from "@fortawesome/free-solid-svg-icons";
 
 const NAVIGATION_URLS = [
-  { label: "Overview", value: "", icon: faGauge },
-  { label: "Insights", value: "insights", icon: faChartSimple },
-  { label: "Templates", value: "templates", icon: faTableColumns },
-  { label: "Membership", value: "membership", icon: faUsers },
-  { label: "Settings", value: "settings", icon: faGear }
+  { label: "Overview", value: "dashboard-home", icon: faGauge },
+  { label: "Insights", value: "dashboard-insights", icon: faChartSimple },
+  { label: "Templates", value: "dashboard-templates", icon: faTableColumns },
+  { label: "Membership", value: "dashboard-membership", icon: faUsers },
+  { label: "Settings", value: "dashboard-settings", icon: faGear }
 ];
 
 export default {

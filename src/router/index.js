@@ -24,14 +24,39 @@ const routes = [
     ]
   },
   {
-    path: "/dashboard/:nestedPath(.*)?",
+    path: "/dashboard",
     name: "dashboard",
     component: () => import("../layouts/DashboardLayout.vue"),
     children: [
       {
-        path: "",
+        path: "overview",
+        alias: "",
         name: "dashboard-home",
         component: () => import("../views/dashboard/DashboardView.vue")
+      },
+      {
+        path: "insights",
+        name: "dashboard-insights",
+        component: () => import("../components/BaseComingSoon.vue")
+      },
+      {
+        path: "templates",
+        name: "dashboard-templates",
+        component: () => import("../components/BaseComingSoon.vue")
+      },
+      {
+        path: "membership",
+        name: "dashboard-membership",
+        component: () => import("../components/BaseComingSoon.vue")
+      },
+      {
+        path: "settings",
+        name: "dashboard-settings",
+        component: () => import("../components/BaseComingSoon.vue")
+      },
+      {
+        path: "*",
+        redirect: { name: "dashboard-home" }
       }
     ]
   },

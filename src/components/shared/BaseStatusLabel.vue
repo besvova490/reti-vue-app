@@ -1,5 +1,5 @@
 <template>
-  <div :class="`reti-status-label reti-status-label_status-${status}`">
+  <div v-if="status" :class="`reti-status-label reti-status-label_status-${status}`">
     {{ MAP_STATUS_LABEL[status] }}
   </div>
 </template>
@@ -11,7 +11,7 @@ const MAP_STATUS_LABEL = {
 };
 
 export default {
-  name: "BaseStatuLabel",
+  name: "BaseStatusLabel",
   props: {
     status: {
       type: String,

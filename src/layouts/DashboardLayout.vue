@@ -2,7 +2,7 @@
   <div class="reti-dashboard-layout">
     <the-aside/>
     <div class="reti-dashboard-layout__content">
-      header
+      <dashboard-header/>
       <main class="reti-dashboard-layout__content-main">
         <router-view></router-view>
       </main>
@@ -12,6 +12,7 @@
 
 <script setup>
 import TheAside from "@/components/aside/TheAside.vue";
+import DashboardHeader from "@/views/dashboard/components/DashboardHeader.vue";
 </script>
 
 <style lang="scss" scoped>
@@ -32,6 +33,9 @@ import TheAside from "@/components/aside/TheAside.vue";
 
   &__content-main {
     flex: 1 1 auto;
+
+    width: calc(100vw - 270px - 120px);
+    overflow-x: hidden;
   }
 }
 </style>

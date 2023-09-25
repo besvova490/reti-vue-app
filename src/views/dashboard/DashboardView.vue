@@ -8,9 +8,13 @@
         v-for="i in 3" :key="i"
         :title="`Meeting ${i}`"
         :date="format(new Date(), 'MMM dd, HH:mm')"
-        :isFavorite="i % 2"
+        :isFavorite="!!(i % 2)"
       />
     </div>
+    <add-edit-meeting-modal
+      :open="isModalOpen"
+      @onClose="handleCloseModal"
+    />
   </section>
 </template>
 
@@ -21,6 +25,7 @@ import { format } from "date-fns";
 import BaseTabs from "@/components/BaseTabs.vue";
 import DashboardViewEmpty from "./components/DashboardViewEmpty.vue";
 import BaseMeetingCard from "@/components/BaseMeetingCard.vue";
+import AddEditMeetingModal from "@/components/modals/add-edit-meeting-modal/AddEditMeetingModal.vue";
 
 const TABS_LIST = [
   { label: "Upcoming", value: "upcoming" },
@@ -33,17 +38,29 @@ export default {
   components: {
     BaseTabs,
     DashboardViewEmpty,
-    BaseMeetingCard
+    BaseMeetingCard,
+    AddEditMeetingModal
   },
   data () {
     return {
       tabs: TABS_LIST,
       activeTab: TABS_LIST[0].value,
-      isEmpty: false
+      isEmpty: false,
+      isModalOpen: false
     };
   },
   methods: {
-    format
+    format,
+    handleCloseModal () {
+      console.log("close");
+
+      this.isModalOpen = false;
+    }
+  },
+  mounted () {
+    setTimeout(() => {
+      this.isModalOpen = true;
+    }, 2000);
   }
 };
 </script>
