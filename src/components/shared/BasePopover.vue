@@ -44,21 +44,26 @@ export default {
   },
   methods: {
     onChangeOpen () {
+      this.position = this.getDropdownRootPosition();
+
       this.isOpen = !this.isOpen;
+    },
+    getDropdownRootPosition () {
+      const newPosition = this.$refs.dropdown.getBoundingClientRect();
+
+      const newLeftPosition = newPosition.left + 175 >= document.body.offsetWidth
+        ? document.body.offsetWidth - 175
+        : newPosition.left;
+
+      return {
+        top: newPosition.top,
+        left: newLeftPosition,
+        height: newPosition.height
+      };
     }
   },
   mounted () {
-    const newPosition = this.$refs.dropdown.getBoundingClientRect();
-
-    const newLeftPosition = newPosition.left + 175 >= document.body.offsetWidth
-      ? document.body.offsetWidth - 175
-      : newPosition.left;
-
-    this.position = {
-      top: newPosition.top,
-      left: newLeftPosition,
-      height: newPosition.height
-    };
+    this.position = this.getDropdownRootPosition();
 
     const outsideClickHandler = clickOutside(this.$refs.dropdown, () => {
       this.isOpen = false;

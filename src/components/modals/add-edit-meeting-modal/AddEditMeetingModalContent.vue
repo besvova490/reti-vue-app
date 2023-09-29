@@ -35,6 +35,9 @@
           :error="errors.isFavorite"
         />
       </div>
+      <multi-email-input
+        class-name="reti-add-edit-meeting-modal-content__full-width-input"
+      />
     </div>
     <base-button
       size="small"
@@ -47,6 +50,7 @@
 </template>
 
 <script>
+import MultiEmailInput from "@/components/MultiEmailInput.vue";
 import BaseSwitch from "@/components/shared/BaseSwitch.vue";
 import BaseDatepicker from "@/components/shared/BaseDatepicker.vue";
 
@@ -55,7 +59,8 @@ export default {
   props: {},
   components: {
     BaseSwitch,
-    BaseDatepicker
+    BaseDatepicker,
+    MultiEmailInput
   },
   data () {
     return {
@@ -104,6 +109,8 @@ export default {
     justify-content: flex-start;
     gap: 8px;
   }
+
+  &__full-width-input { grid-column: 1/-1; }
 
   &__submit-button { margin-left: auto; }
 }

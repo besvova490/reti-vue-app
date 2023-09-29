@@ -1,5 +1,5 @@
 <template>
-  <base-error-label :label="label" :error="error">
+  <base-error-label :label="label" :error="error" :class="wrapperClass">
     <input
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
@@ -26,6 +26,7 @@ export default {
     placeholder: String,
     name: String,
     class: String,
+    wrapperClass: String,
     size: {
       default: "medium",
       validator: value => ["small", "medium", "large"].includes(value)
