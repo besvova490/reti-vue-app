@@ -1,7 +1,7 @@
 <template>
   <form
     class="reti-add-edit-meeting-modal-content"
-    @submit.prevent="onSubmit"
+    @submit.prevent="handleSubmit"
   >
     <div class="reti-add-edit-meeting-modal-content__inner">
       <base-input
@@ -30,12 +30,13 @@
       <div class="reti-add-edit-meeting-modal-content__form-item">
         Create as draft
         <base-switch
-          v-model="form.isFavorite"
-          @change="clearError('isFavorite')"
-          :error="errors.isFavorite"
+          v-model="form.isDraft"
+          @change="clearError('isDraft')"
+          :error="errors.isDraft"
         />
       </div>
       <multi-email-input
+        v-model="form.guests"
         class-name="reti-add-edit-meeting-modal-content__full-width-input"
       />
     </div>
@@ -50,9 +51,31 @@
 </template>
 
 <script>
+import * as yup from "yup";
+
+// components
 import MultiEmailInput from "@/components/MultiEmailInput.vue";
 import BaseSwitch from "@/components/shared/BaseSwitch.vue";
 import BaseDatepicker from "@/components/shared/BaseDatepicker.vue";
+
+// helpers
+import validateForm from "@/helpers/validateForm";
+
+const validationSchema = yup.object().shape({
+  title: yup.string().nullable().required("Title is required"),
+  description: yup.string().nullable().required("Description is required"),
+  date: yup.date().nullable().required("Date is required"),
+  isDraft: yup.boolean().nullable().required("Is draft is required"),
+  guests: yup.array().of(yup.string().email("Email is invalid")).nullable()
+});
+
+const formInitialValues = {
+  title: null,
+  date: new Date(),
+  description: null,
+  isDraft: false,
+  guests: []
+};
 
 export default {
   name: "AddEditMeetingModalContent",
@@ -64,12 +87,24 @@ export default {
   },
   data () {
     return {
-      form: {
-        title: "",
-        description: ""
-      },
+      form: { ...formInitialValues },
       errors: {}
     };
+  },
+  methods: {
+    handleSubmit () {
+      const { errors, isValid } = validateForm(validationSchema, this.form);
+
+      if (!isValid) {
+        this.errors = errors;
+      } else {
+        console.log("submit", this.form);
+        this.form = { ...formInitialValues };
+      }
+    },
+    clearError (field) {
+      this.errors[field] = null;
+    }
   }
 };
 </script>

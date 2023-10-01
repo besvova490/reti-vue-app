@@ -56,11 +56,6 @@ export default {
 
       this.isModalOpen = false;
     }
-  },
-  mounted () {
-    setTimeout(() => {
-      this.isModalOpen = true;
-    }, 2000);
   }
 };
 </script>

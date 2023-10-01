@@ -52,7 +52,25 @@ const routes = [
       {
         path: "settings",
         name: "dashboard-settings",
-        component: () => import("../components/BaseComingSoon.vue")
+        component: () => import("../layouts/dashboard-settings/DashboardSettings.vue"),
+        children: [
+          {
+            path: "subscriptions",
+            alias: "",
+            name: "settings-subscriptions",
+            component: () => import("../views/settings/subscriptions/SubscriptionsView.vue")
+          },
+          {
+            path: "invoice",
+            name: "settings-invoice",
+            component: () => import("../views/settings/InvoiceView.vue")
+          },
+          {
+            path: "user-management",
+            name: "settings-user-management",
+            component: () => import("../views/settings/UserManagementView.vue")
+          }
+        ]
       },
       {
         path: "*",

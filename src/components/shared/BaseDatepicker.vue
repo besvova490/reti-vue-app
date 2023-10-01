@@ -5,7 +5,7 @@
       menu-wrapper-class="reti-date-picker__menu"
     >
       <font-awesome-icon :icon="faCalendar" class="reti-date-picker__placeholder-icon"/>
-      {{ format(new Date(), "MMM dd, yyyy") }}
+      {{ format(selectedDate, "MMM dd, yyyy") }}
 
       <template #popover-menu>
         <div class="reti-date-picker__menu__header">
@@ -38,6 +38,7 @@
               :key="`${day}-${index}`"
               v-for="(day, index) in daysItems"
               :class="dayClassName(day)"
+              @click="onChange(day)"
             >
               <span class="reti-date-picker__menu__body__week-days-inner">
                 {{ format(day.date, "d") }}
@@ -70,7 +71,7 @@ export default {
   name: "BaseDatePicker",
   props: {
     modelValue: {
-      type: String,
+      type: Date,
       default: null
     },
     label: String,
@@ -85,6 +86,7 @@ export default {
     return {
       shortWeekDays,
       activeMonth: new Date(),
+      selectedDate: new Date(),
       daysItems: generateDateRange(new Date())
     };
   },
@@ -104,10 +106,16 @@ export default {
       this.daysItems = generateDateRange(this.activeMonth);
     },
     onChange (day) {
-      this.$emit("update:modelValue", format(day.date, "yyyy-MM-dd"));
+      this.$emit("update:modelValue", day.date);
+      this.selectedDate = day.date;
 
       if (day.isPrevMonth) this.onMonthChange(-1);
       else if (day.isNextMonth) this.onMonthChange(1);
+    }
+  },
+  watch: {
+    modelValue (value) {
+      this.selectedDate = value;
     }
   },
   computed: {

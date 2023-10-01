@@ -37,6 +37,12 @@ export default {
     };
   },
   methods: {
+    handleClose () {
+      this.closed = true;
+      this.$emit("close");
+    }
+  },
+  computed: {
     getClassName () {
       return {
         "reti-tag": true,
@@ -45,12 +51,6 @@ export default {
         [this.className]: !!this.className
       };
     },
-    handleClose () {
-      this.closed = true;
-      this.$emit("close");
-    }
-  },
-  computed: {
     faXmark: () => faXmark
   }
 };
@@ -62,6 +62,8 @@ export default {
   align-items: center;
   justify-content: flex-start;
   gap: 8px;
+
+  padding: 4px 8px;
 
   border-radius: 2px;
   background: rgba(31, 100, 255, 0.25);
@@ -94,6 +96,11 @@ export default {
     flex: 0 0 16px;
 
     cursor: pointer;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 </style>

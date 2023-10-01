@@ -1,8 +1,8 @@
 <template>
-  <button v-if="!to" :class="className" :type="htmlType">
+  <button v-if="!to" :class="getClassName" :type="htmlType">
     <slot></slot>
   </button>
-  <router-link :to="to" v-else :class="className">
+  <router-link :to="to" v-else :class="getClassName">
     <slot></slot>
   </router-link>
 </template>
@@ -13,23 +13,25 @@ export default {
     htmlType: { validator: value => ["button", "submit", "reset"].includes(value) },
     type: {
       default: "primary",
-      validator: value => ["primary", "secondary", "tertiary"].includes(value)
+      validator: value => ["primary", "secondary", "tertiary", "text"].includes(value)
     },
     size: {
       default: "medium",
       validator: value => ["small", "medium", "large"].includes(value)
     },
     to: { type: String, default: null },
-    class: { type: String, default: null },
-    fullWidth: { type: Boolean, default: false }
+    className: { type: String, default: null },
+    fullWidth: { type: Boolean, default: false },
+    ghost: { type: Boolean, default: false }
   },
   name: "BaseButton",
   computed: {
-    className () {
+    getClassName () {
       return {
         "reti-button": true,
-        [this.class]: !!this.class,
+        [this.className]: !!this.className,
         "reti-button_full-width": this.fullWidth,
+        "reti-button_ghost": this.ghost,
         [`reti-button_${this.type}`]: !!this.type,
         [`reti-button_size-${this.size}`]: !!this.size
       };
@@ -68,6 +70,14 @@ export default {
 
     color: #1F64FF;
   }
+
+  &_tertiary {
+    background-color: transparent;
+    border-color: transparent;
+    color: #002;
+  }
+
+  &_ghost { background-color: transparent; }
 
   &_size-large { height: 52px; }
   &_size-small {
