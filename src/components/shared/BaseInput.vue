@@ -1,9 +1,9 @@
 <template>
-  <base-error-label :label="label" :error="error" :class="wrapperClass">
+  <base-error-label :label="label" :error="error" :className="wrapperClass">
     <input
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
-      :class="className"
+      :class="getClassName"
       :placeholder="placeholder"
       :type="htmlType"
       :name="name"
@@ -42,10 +42,10 @@ export default {
   },
   emits: ["update:modelValue"],
   computed: {
-    className () {
+    getClassName () {
       return {
         "reti-input": true,
-        [this.class]: !!this.class,
+        [this.className]: !!this.className,
         [`reti-input_${this.type}`]: !!this.type,
         [`reti-input_size-${this.size}`]: !!this.size
       };

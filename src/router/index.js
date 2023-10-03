@@ -53,6 +53,7 @@ const routes = [
         path: "settings",
         name: "dashboard-settings",
         component: () => import("../layouts/dashboard-settings/DashboardSettings.vue"),
+        redirect: { name: "settings-subscriptions" },
         children: [
           {
             path: "subscriptions",

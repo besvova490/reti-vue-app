@@ -1,5 +1,5 @@
 <template>
-  <base-error-label :label="label" :error="error" :className="wrapperClass">
+  <base-error-label :label="label" :error="error" :class-name="wrapperClass">
     <textarea
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
