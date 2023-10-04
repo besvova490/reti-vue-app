@@ -2,7 +2,7 @@
   <div class="reti-dashboard-layout">
     <the-aside/>
     <div class="reti-dashboard-layout__content">
-      <dashboard-header/>
+      <router-view name="header"></router-view>
       <main class="reti-dashboard-layout__content-main">
         <router-view></router-view>
       </main>
@@ -12,7 +12,6 @@
 
 <script setup>
 import TheAside from "@/components/aside/TheAside.vue";
-import DashboardHeader from "@/views/dashboard/components/DashboardHeader.vue";
 </script>
 
 <style lang="scss" scoped>

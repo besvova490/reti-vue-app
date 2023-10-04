@@ -32,27 +32,39 @@ const routes = [
         path: "overview",
         alias: "",
         name: "dashboard-home",
-        component: () => import("../views/dashboard/DashboardView.vue")
+        components: {
+          default: () => import("../views/dashboard/DashboardView.vue"),
+          header: () => import("../views/dashboard/components/DashboardHeader.vue")
+        }
       },
       {
-        path: "insights",
-        name: "dashboard-insights",
-        component: () => import("../components/BaseComingSoon.vue")
+        path: "meeting-room",
+        name: "dashboard-meeting-room",
+        component: () => import("../views/meeting-room/MeetingRoomView.vue")
       },
       {
         path: "templates",
         name: "dashboard-templates",
-        component: () => import("../components/BaseComingSoon.vue")
+        components: {
+          default: () => import("../components/BaseComingSoon.vue"),
+          header: () => import("../views/dashboard/components/DashboardHeader.vue")
+        }
       },
       {
         path: "membership",
         name: "dashboard-membership",
-        component: () => import("../components/BaseComingSoon.vue")
+        components: {
+          default: () => import("../components/BaseComingSoon.vue"),
+          header: () => import("../views/dashboard/components/DashboardHeader.vue")
+        }
       },
       {
         path: "settings",
         name: "dashboard-settings",
-        component: () => import("../layouts/dashboard-settings/DashboardSettings.vue"),
+        components: {
+          default: () => import("../layouts/dashboard-settings/DashboardSettings.vue"),
+          header: () => import("../views/dashboard/components/DashboardHeader.vue")
+        },
         redirect: { name: "settings-subscriptions" },
         children: [
           {
@@ -78,6 +90,11 @@ const routes = [
         redirect: { name: "dashboard-home" }
       }
     ]
+  },
+  {
+    path: "/checkout",
+    name: "checkout",
+    component: () => import("../views/CheckoutView.vue")
   },
   {
     path: "/:notFound(.*)",

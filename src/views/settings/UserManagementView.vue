@@ -58,24 +58,17 @@
       <div class="reti-settings-user-management__main__block">
         <base-collapse :items="notificationsCollapseItems">
           <div class="reti-settings-user-management__main__inputs-block">
-            <base-input
-              full-width
-              placeholder="Current password"
-              class-name="reti-settings-user-management__input"
-              name="password"
-              html-type="password"
-            />
-            <base-input
-              full-width
-              placeholder="New password"
-              class-name="reti-settings-user-management__input"
-              name="newPassword"
-              html-type="password"
-            />
+            <base-checkbox>Receive weekly digest mails</base-checkbox>
+            <base-checkbox>Receive new rating announcements</base-checkbox>
           </div>
         </base-collapse>
       </div>
-      <div class="reti-settings-user-management__main__block"></div>
+      <div class="reti-settings-user-management__main__block">
+        <base-collapse :items="timeZoneCollapseItems">
+          <base-select full-width :options="gateTimeZones()">
+          </base-select>
+        </base-collapse>
+      </div>
       <base-button type="secondary" size="small" ghost>Add Account</base-button>
     </form>
   </section>
@@ -83,21 +76,35 @@
 
 <script>
 // components
+import BaseCheckbox from "@/components/shared/BaseCheckbox.vue";
 import BaseCollapse from "@/components/BaseCollapse.vue";
+import BaseSelect from "@/components/shared/BaseSelect.vue";
+
+// helpers
+import gateTimeZones from "@/helpers/gateTimeZones";
 
 const profileCollapseItems = [{ title: "Profile", subtitle: "Name, Surname, Email address", key: "profile-settings" }];
 const passwordsCollapseItems = [{ title: "Password", subtitle: "Change your password", key: "password-settings" }];
 const notificationsCollapseItems = [{ title: "Notifications", subtitle: "Rateit will send you notifications", key: "notifications-settings" }];
+const timeZoneCollapseItems = [{ title: "Time Zone", subtitle: "Select your time zone", key: "time-zone-settings" }];
 
 export default {
   name: "SettingsUserManagementView",
-  components: { BaseCollapse },
+  components: {
+    BaseCollapse,
+    BaseCheckbox,
+    BaseSelect
+  },
   data () {
     return {
       profileCollapseItems,
       passwordsCollapseItems,
-      notificationsCollapseItems
+      notificationsCollapseItems,
+      timeZoneCollapseItems
     };
+  },
+  methods: {
+    gateTimeZones
   }
 };
 </script>

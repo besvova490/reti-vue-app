@@ -24,7 +24,7 @@ import { faGauge, faChartSimple, faTableColumns, faUsers, faGear } from "@fortaw
 
 const NAVIGATION_URLS = [
   { label: "Overview", value: "dashboard-home", icon: faGauge },
-  { label: "Insights", value: "dashboard-insights", icon: faChartSimple },
+  { label: "Meeting", value: "dashboard-meeting-room", icon: faChartSimple },
   { label: "Templates", value: "dashboard-templates", icon: faTableColumns },
   { label: "Membership", value: "dashboard-membership", icon: faUsers },
   { label: "Settings", value: "dashboard-settings", icon: faGear }

@@ -12,7 +12,7 @@
           :style="getPosition"
           v-if="isOpen"
           ref="dropdownMenu"
-          @click.stop
+          @click.stop="onMenuClick"
         >
           <slot name="popover-menu"></slot>
         </div>
@@ -30,6 +30,10 @@ export default {
     className: {
       type: String,
       default: ""
+    },
+    closeOnMenuClick: {
+      type: Boolean,
+      default: false
     },
     menuWrapperClass: {
       type: String,
@@ -60,6 +64,11 @@ export default {
         left: newLeftPosition,
         height: newPosition.height
       };
+    },
+    onMenuClick () {
+      if (this.closeOnMenuClick) {
+        this.isOpen = false;
+      }
     }
   },
   mounted () {

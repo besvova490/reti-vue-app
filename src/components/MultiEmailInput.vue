@@ -63,8 +63,6 @@ export default {
       this.$emit("update:modelValue", this.emails);
     },
     handleDeleteEmail (email) {
-      console.log(email);
-
       this.emails = this.emails.filter(item => item !== email);
       this.inputValue = this.inputValue.replace(`${email} `, "");
 

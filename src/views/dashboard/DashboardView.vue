@@ -52,8 +52,6 @@ export default {
   methods: {
     format,
     handleCloseModal () {
-      console.log("close");
-
       this.isModalOpen = false;
     }
   }

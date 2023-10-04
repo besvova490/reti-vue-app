@@ -1,5 +1,5 @@
 <template>
-  <div :class="`reti-error-label ${className}`">
+  <div :class="getClassName">
     <span v-if="label" class="reti-error-label__label">{{ label }}</span>
     <slot></slot>
     <span v-if="error" class="reti-error-label__error">
@@ -20,10 +20,21 @@ export default {
     className: {
       type: String,
       default: ""
+    },
+    fullWidth: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
-    faCircleExclamation: () => faCircleExclamation
+    faCircleExclamation: () => faCircleExclamation,
+    getClassName () {
+      return {
+        "reti-error-label": true,
+        "reti-error-label_full-width": this.fullWidth,
+        [this.className]: !!this.className
+      };
+    }
   }
 };
 </script>
@@ -60,5 +71,7 @@ export default {
     justify-content: flex-start;
     gap: 10px;
   }
+
+  &_full-width { width: 100%; }
 }
 </style>
