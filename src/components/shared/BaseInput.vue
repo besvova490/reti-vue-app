@@ -45,7 +45,7 @@ export default {
     getClassName () {
       return {
         "reti-input": true,
-        [this.className]: !!this.className,
+        [this.class]: !!this.class,
         [`reti-input_${this.type}`]: !!this.type,
         [`reti-input_size-${this.size}`]: !!this.size
       };

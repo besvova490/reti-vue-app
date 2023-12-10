@@ -6,7 +6,7 @@
         <base-dropdown
           :items="items"
         >
-          <base-avatar full-name="Full Name"/>
+          <base-avatar :full-name="fullName"/>
           <font-awesome-icon :icon="faEllipsisVertical"/>
           <template #list-item="{ data }">
             <router-link
@@ -49,7 +49,11 @@ export default {
     faBell: () => faBell,
     faArrowRightFromBracket: () => faArrowRightFromBracket,
     faGear: () => faGear,
-    faEllipsisVertical: () => faEllipsisVertical
+    faEllipsisVertical: () => faEllipsisVertical,
+    fullName () {
+      const { firstName, lastName } = this.$store.getters["auth/user"];
+      return `${firstName} ${lastName}`;
+    }
   }
 };
 </script>

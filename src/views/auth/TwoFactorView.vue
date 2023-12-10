@@ -4,22 +4,15 @@
     @submit.prevent="onSubmit"
   >
     <h1 class="reti-login-form__title">
-      Log In
+      Two-factor authentication
     </h1>
     <base-input
-      placeholder="Email"
-      name="email"
-      v-model="form.email"
-      @change="clearError('email')"
-      :error="errors.email"
-    />
-    <base-input
-      placeholder="Password"
-      name="password"
-      htmlType="password"
-      v-model="form.password"
-      @change="clearError('password')"
-      :error="errors.password"
+      placeholder="XXXXXX"
+      name="twoFactorCode"
+      v-model="form.twoFactorCode"
+      label="Authentication code"
+      @change="clearError('twoFactorCode')"
+      :error="errors.twoFactorCode"
     />
     <div class="reti-login-form__actions">
       <base-button
@@ -28,16 +21,7 @@
         fullWidth
         class="reti-login-form__submit-button"
       >
-        Login
-      </base-button>
-      <base-button
-        size="small"
-        fullWidth
-        type="secondary"
-        to="/auth/sign-up"
-        class="reti-login-form__submit-button"
-      >
-        Sign Up
+        Verify
       </base-button>
     </div>
   </form>
@@ -51,8 +35,7 @@ import validateForm from "@/helpers/validateForm";
 import auth from "@/api/auth";
 
 const validationSchema = yup.object().shape({
-  email: yup.string().nullable().email("Email is invalid").required("Email is required"),
-  password: yup.string().nullable().required("Password is required")
+  twoFactorCode: yup.string().nullable().required("Email is required")
 });
 
 export default {
@@ -60,8 +43,7 @@ export default {
   data () {
     return {
       form: {
-        email: this.$route.query.email || null,
-        password: this.$route.query.password || null
+        twoFactorCode: null
       },
       errors: {}
     };
@@ -81,10 +63,6 @@ export default {
 
       auth.postSignIn(this.form)
         .then(resp => {
-          if (resp.data.redirectUrl) {
-            this.$router.push(resp.data.redirectUrl);
-          }
-
           localStorage.setItem("accessToken", resp.data.accessToken);
           localStorage.setItem("refreshToken", resp.data.refreshToken);
 

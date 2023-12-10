@@ -68,6 +68,7 @@ import BaseUpload from "@/components/shared/BaseUpload.vue";
 
 // helpers
 import validateForm from "@/helpers/validateForm";
+import auth from "@/api/auth";
 
 const validationSchema = yup.object().shape({
   firstName: yup.string().nullable().required("First Name is required"),
@@ -98,7 +99,21 @@ export default {
       if (!isValid) {
         this.errors = errors;
       } else {
-        console.log(this.form);
+        auth.postSignUp(this.form)
+          .then(() => {
+            this.$router.push({
+              path: "/auth/log-in",
+              query: {
+                email: this.form.email,
+                password: this.form.password
+              }
+            });
+          }).catch(error => {
+            this.errors = {
+              ...this.errors,
+              ...error.response.data.errors
+            };
+          });
       }
     }
   }

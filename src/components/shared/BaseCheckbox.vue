@@ -4,7 +4,7 @@
       <div class="reti-checkbox__inner">
         <font-awesome-icon :icon="faCheck" />
       </div>
-      <input type="checkbox" v-show="false">
+      <input :value="isChecked" type="checkbox" v-show="false">
       <slot></slot>
     </div>
   </base-error-label>

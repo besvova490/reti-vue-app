@@ -10,8 +10,16 @@
   </div>
 </template>
 
-<script setup>
+<script>
 import TheAside from "@/components/aside/TheAside.vue";
+
+export default {
+  name: "DashboardLayout",
+  components: { TheAside },
+  beforeMount () {
+    this.$store.dispatch("auth/getUserProfile");
+  }
+};
 </script>
 
 <style lang="scss" scoped>

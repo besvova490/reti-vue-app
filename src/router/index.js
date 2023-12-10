@@ -1,5 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router";
 
+// helpers
+import store from "@/store";
+
 const routes = [
   {
     path: "/",
@@ -20,6 +23,11 @@ const routes = [
         path: "sign-up",
         name: "signup",
         component: () => import("../views/auth/SignUpView.vue")
+      },
+      {
+        path: "two-factor",
+        name: "twoFactor",
+        component: () => import("../views/auth/TwoFactorView.vue")
       }
     ]
   },
@@ -27,6 +35,7 @@ const routes = [
     path: "/dashboard",
     name: "dashboard",
     component: () => import("../layouts/DashboardLayout.vue"),
+    meta: { isPrivate: true },
     children: [
       {
         path: "overview",
@@ -94,7 +103,8 @@ const routes = [
   {
     path: "/checkout",
     name: "checkout",
-    component: () => import("../views/CheckoutView.vue")
+    component: () => import("../views/CheckoutView.vue"),
+    meta: { isPrivate: true }
   },
   {
     path: "/:notFound(.*)",
@@ -106,6 +116,14 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
+});
+
+router.beforeEach((to, _, next) => {
+  if (to.meta.isPrivate) {
+    next(store.getters["auth/isAuthenticated"] ? true : "/auth/log-in");
+  } else {
+    next();
+  }
 });
 
 export default router;

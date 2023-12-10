@@ -56,6 +56,11 @@
         </base-collapse>
       </div>
       <div class="reti-settings-user-management__main__block">
+        <base-collapse :items="twoFactorCollapseItems">
+          <base-two-factor-setting/>
+        </base-collapse>
+      </div>
+      <div class="reti-settings-user-management__main__block">
         <base-collapse :items="notificationsCollapseItems">
           <div class="reti-settings-user-management__main__inputs-block">
             <base-checkbox>Receive weekly digest mails</base-checkbox>
@@ -79,12 +84,14 @@
 import BaseCheckbox from "@/components/shared/BaseCheckbox.vue";
 import BaseCollapse from "@/components/BaseCollapse.vue";
 import BaseSelect from "@/components/shared/BaseSelect.vue";
+import BaseTwoFactorSetting from "@/components/two-factor/BaseTwoFactorSetting.vue";
 
 // helpers
 import gateTimeZones from "@/helpers/gateTimeZones";
 
 const profileCollapseItems = [{ title: "Profile", subtitle: "Name, Surname, Email address", key: "profile-settings" }];
 const passwordsCollapseItems = [{ title: "Password", subtitle: "Change your password", key: "password-settings" }];
+const twoFactorCollapseItems = [{ title: "Two-factor authentication", subtitle: "Enable two-factor authentication", key: "two-factor-settings" }];
 const notificationsCollapseItems = [{ title: "Notifications", subtitle: "Rateit will send you notifications", key: "notifications-settings" }];
 const timeZoneCollapseItems = [{ title: "Time Zone", subtitle: "Select your time zone", key: "time-zone-settings" }];
 
@@ -93,12 +100,14 @@ export default {
   components: {
     BaseCollapse,
     BaseCheckbox,
-    BaseSelect
+    BaseSelect,
+    BaseTwoFactorSetting
   },
   data () {
     return {
       profileCollapseItems,
       passwordsCollapseItems,
+      twoFactorCollapseItems,
       notificationsCollapseItems,
       timeZoneCollapseItems
     };

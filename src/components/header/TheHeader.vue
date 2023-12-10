@@ -20,7 +20,6 @@ export default {
     TheNavigation
   }
 };
-
 </script>
 
 <style lang="scss">
